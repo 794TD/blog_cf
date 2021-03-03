@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1614762721489">
+  <link rel="stylesheet" href="/css/style.css?v=1614763591151">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -128,48 +128,7 @@
 
         <article>
             
-                <h1 id="Hexo-折腾大赏"><a href="#Hexo-折腾大赏" class="headerlink" title="Hexo 折腾大赏"></a>Hexo 折腾大赏</h1><p><del>本人有服务器若干，Github账户一个，CloudFlare账户一个。选择折腾Hexo纯粹是闲的</del><br><br>博客网站有动态和静态两大类，其中各有各的特点和问题。<br>|特性|动态|静态|<br>|—-|—-|—-|<br>|后台|支持|不支持|<br>|评论区|支持|无原生支持|<br>|Pages托管|不支持|支持|</p>
-<p>这里放上了三个最直观的因素。在我看来，静态博客最大的问题就是没有后台。网站管理难度直线上升。当然静态博客也有好处，生成的是HTML文件，页面加载速度快，对服务器要求较低。或者可以干脆选择Pages托管，无论是CloudFlare还是Github都有免费的Pages托管服务。</p>
-<p><strong>先来说结论：技术小白强烈不推荐Hexo等部署难度较大的静态博客，无论是WordPress还是Typecho，在部署难度上来说都比静态博客要低不少。</strong></p>
-<h2 id="部署Hexo"><a href="#部署Hexo" class="headerlink" title="部署Hexo"></a>部署Hexo</h2><p>Hexo.io上提供了部署教程。但是…… 我还是再水点字数好了。</p>
-<p>在<strong>Windos</strong>平台上Hexo的运行仰赖于两个东西——<a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.JS</a>和<a target="_blank" rel="noopener" href="http://git-scm.com/download/win">Git</a>。</p>
-<p>两者在安装的时候都是按着默认配置来就可以了。除了<strong>Git里面有一个东西要改动</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Use MinTTY</span><br><span class="line">Use Windows&#39;s default conlse window</span><br></pre></td></tr></table></figure>
-<p>这里要手动改成<code>Use Windows&#39;s default conlse window</code>。</p>
-<p>全部安装完成以后，找一个合适的地方新建一个空的文件夹。<br>打开文件夹，右键找到<code>Git Bash Here</code>。这里会弹出一个命令行窗口。</p>
-<blockquote>
-<p>请各位电脑苦手注意，Hexo的很多事情都仰仗于这一个小小的命令行窗口来完成。没有能力或者信心的，请自觉转去动态博客。</p>
-</blockquote>
-<p>在窗口中输入如下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>等待安装完毕。安装完毕后可以用<code>Hexo -v</code>来核验是否安装完成。<br>下一步，初始化网站。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>接下来输入<code>Hexo g</code>(渲染页面)和<code>Hexo s</code>（启动服务器）。<br><br>到这里，如果可以在浏览器中输入<code>localhost:4000</code>访问的话，那就代表Hexo在本地搭建完成了。</p>
-<h2 id="发布你的网站"><a href="#发布你的网站" class="headerlink" title="发布你的网站"></a>发布你的网站</h2><p>网站做出来就是要让人看的。这里我提供CloudFlare的Pages托管部署指导。</p>
-<p><del>什么？部署到服务器？等我研究完了再说吧</del></p>
-<p>CloudFlare的网页托管服务需要依靠Github的仓库来完成。别问我为啥不用Githubpages，因为那玩意访问速度感人。</p>
-<p>首先登录Github，然后新建一个Repositories。默认选项即可。</p>
-<p>接下来的操作略微有一点麻烦。所以我还是先解释一下这套系统的逻辑比较好。<br><br>CloudFlare Pages是一个静态网页托管服务，静态网页的资源读取自绑定的Github仓库。那么我们只需要将网站同步到Github仓库，CloudFlare Pages就可以自动读取并且发布。</p>
-<p>下面要做的事情是把建立一个“通道”，让我们可以把在本地渲染好的网页同步到Github的仓库。<br><br>还是在那个命令行窗口里面，依次执行如下的命令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;在这里输入用户名，引号不能少&quot;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email &quot;在这里输入你注册Github的邮箱&quot;</span><br></pre></td></tr></table></figure>
-<p>生成SSH密钥↓</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;和上一步一样的邮箱&quot;</span><br></pre></td></tr></table></figure>
-<p>生成SSH密钥的时候会跳出来几个选项，全部回车默认即可。</p>
-<p>进入Github的设置页面，找到<code>SSH and GPG keys</code>这个选项卡。点击<code>New SSH key</code>这个选项。<br>Title这里不建议瞎起名字，起一个便于理解的，比如<code>博客</code>。<br><br>下面的<code>Key</code>自然就是要填写密钥。在命令行窗口执行如下命令，查看之前生成的密钥。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~&#x2F;.ssh&#x2F;id_rsa.pub</span><br></pre></td></tr></table></figure>
-<p>输入如下命令，如果出现yes/no的选项，输入yes。如果可以看到你的Github用户名即代表“通道”构建成功。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-
-<p>CloudFlare Pages 现在处于公测阶段(Public Beta)，任何人都可以使用，只需要注册一个CloudFlare账户。<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://s3.ax1x.com/2021/03/03/6A04qU.png" alt="CloudFlareDashBoard" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="https://s4.ax1x.com/2021/03/03/6A7Al6.png" alt="登录账户并且选择仓库" class="lazyload"><br>这里需要注意，如果Github仓库没有文件，就无法产生Branches。解决问题的方法也很简单，随便上传一个文件即可(添加一个README.md即可)。<br>后面的选择None即可，无需过多配置。</p>
-<blockquote>
-<p>请注意，CloudFlare Pages对每个月的构建次数是有限制的，免费计划一个月有500次，而每次部署页面都会消耗构建次数，且免费版一次只能构建一个文件。</p>
-</blockquote>
-<p>再次回到命令行窗口<br>依次输入渲染命令和推送命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>等待CloudFlare Pages 完成构建，在浏览器输入分配给你的域名，就可以在互联网上看到你的博客了。</p>
-
+                <h1 id="Hexo-折腾大赏"><a href="#Hexo-折腾大赏" class="headerlink" title="Hexo 折腾大赏"></a>Hexo 折腾大赏</h1><p><del>本人有服务器若干，Github账户一个，CloudFlare账户一个。选择折腾Hexo纯粹是闲的</del><br></p>
             
         </article>
     </div>
@@ -254,7 +213,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
- <script src="/js/app.js?v=1614762721490"></script>
+ <script src="/js/app.js?v=1614763591151"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
